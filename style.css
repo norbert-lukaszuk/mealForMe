@@ -42,6 +42,14 @@ html{
 .input__wraper{
     display: flex;
 }
+.link{
+    text-decoration: none;
+    color: black;
+    
+}
+.link:visited{
+    color: black;
+}
 .resoult__wraper{
     display: flex;
     align-items: center;

@@ -16,6 +16,7 @@ form.addEventListener('submit',e=>{
             const paragraph = `<p>${e.strMeal}</p>`;
             resoult__wraper.innerHTML += paragraph;
             resoult__wraper.innerHTML += `<img class="thumbnail" src="${e.strMealThumb}" alt="${e.strMeal}" />`;
+            resoult__wraper.innerHTML += `<a class="link" href="${e.strSource}">Link<a>`;
         })
     });
 })
@@ -31,6 +32,8 @@ random__button.addEventListener('click', e=>{
             const paragraph = `<p>${data.meals[0].strMeal}</p>`;
             resoult__wraper.innerHTML += paragraph;
             resoult__wraper.innerHTML += `<img class="thumbnail" src="${data.meals[0].strMealThumb}" alt="${data.meals[0].strMeal}" />`;
+            resoult__wraper.innerHTML += `<a class="link" href="${data.meals[0].strSource}">Link<a>`;
+
         })
     });
 

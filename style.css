@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+html{
+    font-family: 'Oswald', sans-serif;
+}
+.app__name{
+    text-align: center;
+    margin: 15px 0;
+}
+.buttons__wraper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+}
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.form input{
+    margin-right: 10px;
+    padding: 5px;
+}
+.form button{
+    margin-right: 10px;
+    padding: 5px;
+}
+.form__wraper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icons__wraper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icons__wraper i{
+    margin: 10px;
+}
+.input__wraper{
+    display: flex;
+
+
+}

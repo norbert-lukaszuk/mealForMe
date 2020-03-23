@@ -21,12 +21,12 @@ form.addEventListener('submit',e=>{
         })
     })
     .catch(err=>console.log(err));
+
     fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&number=1&instructionsRequired=true&addRecipeInformation=true&apiKey=${apiKey}`)
     .then(res=>res.json())
     .then(data=>{
         data.results.forEach(e=>{
             console.log(e)
-            let link ='';
             const paragraph = `<p>${e.title}</p>`;
             resoult__wraper.innerHTML += paragraph;
             resoult__wraper.innerHTML += `<img class="thumbnail" src="https://spoonacular.com/recipeImages/${e.id}-480x360.jpg" alt="${e.title}" />`;
@@ -43,12 +43,22 @@ random__button.addEventListener('click', e=>{
     .then(data=>{
         
         // data.meals.forEach(e=>{
-            console.log(data.meals[0])
-            const paragraph = `<p>${data.meals[0].strMeal}</p>`;
-            resoult__wraper.innerHTML += paragraph;
-            resoult__wraper.innerHTML += `<img class="thumbnail" src="${data.meals[0].strMealThumb}" alt="${data.meals[0].strMeal}" />`;
-            resoult__wraper.innerHTML += `<a class="link" href="${data.meals[0].strSource}">Link<a>`;
+            const recipe = data.meals[0];
+            const meal = `<div class="meal"><p>${recipe.strMeal}</p><a class="link" href="${recipe.strSource}"><img class="thumbnail" src="${data.meals[0].strMealThumb}" alt="${data.meals[0].strMeal}"/><a></div>`;
+            resoult__wraper.innerHTML += meal;
+            // resoult__wraper.innerHTML += `<img class="thumbnail" src="${data.meals[0].strMealThumb}" alt="${data.meals[0].strMeal}" />`;
+            // resoult__wraper.innerHTML += `<a class="link" href="${data.meals[0].strSource}">Link<a>`;
 
         })
+    fetch(`https://api.spoonacular.com/recipes/random?number=1&apiKey=${apiKey}`)
+        .then(res=>res.json())
+        .then(data=>{
+            const recipe = data.recipes[0];
+            const meal = `<div class="meal"><p>${recipe.title}</p><a class="link" href="${recipe.sourceUrl}"><img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/><a></div>`;
+            resoult__wraper.innerHTML += meal;
+            // resoult__wraper.innerHTML += `<img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}" />`;
+            // resoult__wraper.innerHTML += `<a class="link" href="${recipe.sourceUrl}">Link<a>`;
+        
+        });
     });
 

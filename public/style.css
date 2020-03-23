@@ -50,13 +50,26 @@ html{
 .link:visited{
     color: black;
 }
-.resoult__wraper{
+.meal{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
+.resoult__wraper{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* flex-direction: column; */
+}
 .thumbnail{
+    border-radius: 20px;
     width: 300px;
     height: 300px;
+}
+@media(max-width:650px){
+
+.resoult__wraper{
+    flex-direction: column;
+}
 }

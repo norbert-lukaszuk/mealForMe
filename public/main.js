@@ -20,22 +20,23 @@ form.addEventListener('submit',e=>{
             resoult__wraper.innerHTML += `<a class="link" href="${e.strSource}">Link<a>`;
         })
     });
-    fetch(`https://api.spoonacular.com/recipes/search?query=${search}&number=10&information&instructionsRequired=true&apiKey=${apiKey}`)
+    fetch(`https://api.spoonacular.com/recipes/search?query=${search}&number=1&information&instructionsRequired=true&apiKey=${apiKey}`)
     .then(res=>res.json())
     .then(data=>{
         data.results.forEach(e=>{
             console.log(e)
+            let link ='';
             const paragraph = `<p>${e.title}</p>`;
             resoult__wraper.innerHTML += paragraph;
             resoult__wraper.innerHTML += `<img class="thumbnail" src="https://spoonacular.com/recipeImages/${e.id}-480x360.jpg" alt="${e.title}" />`;
             // resoult__wraper.innerHTML += `<a class="link" href="${e.strSource}">Link<a>`;
-            fetch(`https://api.spoonacular.com/recipes/${e.id}/analyzedInstructions?apiKey=${apiKey}`)
+            fetch(`https://api.spoonacular.com/recipes/${e.id}/information?apiKey=${apiKey}`)
             .then(res=>res.json())
             .then(data=>{
-                data.forEach(steps=>{
-                    steps.steps.forEach(step=>console.log(step))
+                   link = data.sourceUrl;
+                   console.log('my console log: link', link)
+                   resoult__wraper.innerHTML += `<a class="link" href="${link}">Link<a>`;
                 })
-            })
         })
     });
 })

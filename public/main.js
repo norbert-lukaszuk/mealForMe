@@ -19,8 +19,9 @@ form.addEventListener('submit',e=>{
             resoult__wraper.innerHTML += `<img class="thumbnail" src="${e.strMealThumb}" alt="${e.strMeal}" />`;
             resoult__wraper.innerHTML += `<a class="link" href="${e.strSource}">Link<a>`;
         })
-    });
-    fetch(`https://api.spoonacular.com/recipes/search?query=${search}&number=1&information&instructionsRequired=true&apiKey=${apiKey}`)
+    })
+    .catch(err=>console.log(err));
+    fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&number=1&instructionsRequired=true&addRecipeInformation=true&apiKey=${apiKey}`)
     .then(res=>res.json())
     .then(data=>{
         data.results.forEach(e=>{
@@ -29,14 +30,8 @@ form.addEventListener('submit',e=>{
             const paragraph = `<p>${e.title}</p>`;
             resoult__wraper.innerHTML += paragraph;
             resoult__wraper.innerHTML += `<img class="thumbnail" src="https://spoonacular.com/recipeImages/${e.id}-480x360.jpg" alt="${e.title}" />`;
-            // resoult__wraper.innerHTML += `<a class="link" href="${e.strSource}">Link<a>`;
-            fetch(`https://api.spoonacular.com/recipes/${e.id}/information?apiKey=${apiKey}`)
-            .then(res=>res.json())
-            .then(data=>{
-                   link = data.sourceUrl;
-                   console.log('my console log: link', link)
-                   resoult__wraper.innerHTML += `<a class="link" href="${link}">Link<a>`;
-                })
+            resoult__wraper.innerHTML += `<a class="link" href="${e.sourceUrl}">Link<a>`;
+           
         })
     });
 })

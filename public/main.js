@@ -12,9 +12,12 @@ form.addEventListener('submit',e=>{
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`)
     .then(res=>res.json())
     .then(data=>{
+        const ids = data.meals.map(e=> e.idMeal);//mapowanie tablicy aby pozyskać tablice z id posiłku
+        console.log("ids", ids);
+        
         data.meals.forEach(e=>{
             const recipe = e;
-            const meal = `<div class="meal"><p>${recipe.strMeal}</p><a class="link" href="${recipe.strSource}"><img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/><a></div>`;    
+            const meal = `<div class="meal"data-id=${recipe.idMeal}><p>${recipe.strMeal}</p><a class="link" href="${recipe.strSource}"><img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/><a></div>`;    
             console.log(e)
             // const paragraph = `<p>${e.strMeal}</p>`;
             resoult__wraper.innerHTML += meal;
@@ -27,10 +30,13 @@ form.addEventListener('submit',e=>{
     fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&instructionsRequired=true&addRecipeInformation=true&apiKey=${apiKey}`)
     .then(res=>res.json())
     .then(data=>{
+        console.log(data, typeof(data.results));
+        const ids = data.results.map(e=> e.id)
+        console.log(ids);
         data.results.forEach(e=>{
             console.log(e)
             const recipe = e;
-            const meal = `<div class="meal"><p>${recipe.title}</p><a class="link" href="${recipe.sourceUrl}"><img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/><a></div>`;
+            const meal = `<div class="meal" data-id=${recipe.id}><p>${recipe.title}</p><a class="link" href="${recipe.sourceUrl}"><img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/><a></div>`;
             resoult__wraper.innerHTML += meal;
             // resoult__wraper.innerHTML += `<img class="thumbnail" src="https://spoonacular.com/recipeImages/${e.id}-480x360.jpg" alt="${e.title}" />`;
             // resoult__wraper.innerHTML += `<a class="link" href="${e.sourceUrl}">Link<a>`;
@@ -64,4 +70,12 @@ random__button.addEventListener('click', e=>{
         
         });
     });
-
+resoult__wraper.addEventListener('click', e=>{
+    const mealId = e.path.find(element=>{
+     if(element.classList.contains('meal')){
+         return element
+     }
+     else{false}   
+    })
+    console.log(mealId);
+})

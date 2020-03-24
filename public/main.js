@@ -63,7 +63,7 @@ random__button.addEventListener('click', e=>{
         .then(res=>res.json())
         .then(data=>{
             const recipe = data.recipes[0];
-            const meal = `<div class="meal"><p>${recipe.title}</p><a class="link" href="${recipe.sourceUrl}"><img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/><a></div>`;
+            const meal = `<div class="meal"><p>${recipe.title}</p><div class="meal__info"><a class="link" href="${recipe.sourceUrl}"><img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/><a></div></div>`;
             resoult__wraper.innerHTML += meal;
             // resoult__wraper.innerHTML += `<img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}" />`;
             // resoult__wraper.innerHTML += `<a class="link" href="${recipe.sourceUrl}">Link<a>`;
@@ -73,9 +73,9 @@ random__button.addEventListener('click', e=>{
 resoult__wraper.addEventListener('click', e=>{
     const mealId = e.path.find(element=>{
      if(element.classList.contains('meal')){
-         return element
+         return element.getAttribute('data-id')
      }
      else{false}   
     })
-    console.log(mealId);
+    console.log(mealId.getAttribute('data-id'));
 })

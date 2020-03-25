@@ -70,6 +70,7 @@ random__button.addEventListener('click', e=>{
         
         });
     });
+    // selcting single meal from resoults
 resoult__wraper.addEventListener('click', e=>{
     const mealId = e.path.find(element=>{
      if(element.classList.contains('meal')){

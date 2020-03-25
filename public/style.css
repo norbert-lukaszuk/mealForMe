@@ -74,6 +74,9 @@ html{
     opacity: 0;
     /* visibility: hidden; */
 }
+.meal__title{
+    color: white;
+}
 .resoult__wraper{
     display: flex;
     align-items: center;

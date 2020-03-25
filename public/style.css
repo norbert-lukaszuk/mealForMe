@@ -44,7 +44,7 @@ html{
 }
 .link{
     text-decoration: none;
-    color: black;
+    color: white;
     
 }
 .link:visited{
@@ -59,6 +59,13 @@ html{
 }
 .meal:hover .meal__info{
     opacity: 60%;
+}
+.meal__icons{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
 }
 .meal__info{
     position: absolute;

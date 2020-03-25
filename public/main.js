@@ -63,26 +63,24 @@ random__button.addEventListener('click', e=>{
         .then(res=>res.json())
         .then(data=>{
             const recipe = data.recipes[0];
-						const meal = `<div class="meal">
+						const meal = `<div class="meal" data-id=${recipe.id}>
 						<p>${recipe.title}</p>
-						<a class="link" href="${recipe.sourceUrl}">
-						<div class="meal__info"><p class="meal__title">${recipe.title}</p></div>
+						
+						<div class="meal__info"><div class="meal__icons"><a class="link" href="${recipe.sourceUrl}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div></div>
 						<img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/>
-						<a>
+						
 						</div>`;
             resoult__wraper.innerHTML += meal;
-            // resoult__wraper.innerHTML += `<img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}" />`;
-            // resoult__wraper.innerHTML += `<a class="link" href="${recipe.sourceUrl}">Link<a>`;
-        
+            
         });
     });
     // selcting single meal from resoults
 resoult__wraper.addEventListener('click', e=>{
     const mealId = e.path.find(element=>{
-     if(element.classList.contains('meal')){
-         return element.getAttribute('data-id')
+     if(element.classList.contains('fa-list-ul')){
+         return element.getAttribute('class')
      }
      else{false}   
     })
-    console.log(mealId.getAttribute('data-id'));
+    console.log(mealId);
 })

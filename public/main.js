@@ -63,7 +63,7 @@ random__button.addEventListener('click', e=>{
         .then(res=>res.json())
         .then(data=>{
             const recipe = data.recipes[0];
-            const meal = `<div class="meal"><p>${recipe.title}</p><a class="link" href="${recipe.sourceUrl}"><div class="meal__info"></div><img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/><a></div>`;
+            const meal = `<div class="meal"><p>${recipe.title}</p><a class="link" href="${recipe.sourceUrl}"><div class="meal__info"><p>${recipe.title}</p></div><img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/><a></div>`;
             resoult__wraper.innerHTML += meal;
             // resoult__wraper.innerHTML += `<img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}" />`;
             // resoult__wraper.innerHTML += `<a class="link" href="${recipe.sourceUrl}">Link<a>`;

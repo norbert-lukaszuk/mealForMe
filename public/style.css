@@ -57,6 +57,9 @@ html{
     justify-content: center;
     flex-direction: column;
 }
+.meal:hover .meal__info{
+    opacity: 60%;
+}
 .meal__info{
     position: absolute;
     background-color: black;
@@ -68,7 +71,7 @@ html{
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 50%;
+    opacity: 0;
     /* visibility: hidden; */
 }
 .resoult__wraper{

@@ -39,6 +39,16 @@ html{
 .icons__wraper i{
     margin: 10px;
 }
+.ingredient{
+    margin: 0;
+    padding: .5rem;
+}
+.ingredient__list{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
 .input__wraper{
     display: flex;
 }

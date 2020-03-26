@@ -1,8 +1,9 @@
+const apiKey = '8125b5fc0f034ef1869347654bb52146';
 const app__name = document.getElementById('app__name');
 const form = document.getElementById('form');
+const ingredient__list = document.getElementById('ingredient__list');
 const resoult__wraper = document.getElementById('resoult__wraper');
 const random__button = document.getElementById('random__button');
-const apiKey = '8125b5fc0f034ef1869347654bb52146';
 
 form.addEventListener('submit',e=>{
     e.preventDefault();
@@ -93,18 +94,25 @@ resoult__wraper.addEventListener('click', e=>{
     console.log(mealId);
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
     .then(res=>res.json())
-    .then(data=>{data.meals[0].strMeal
-    // meal ingridients array
+    .then(data=>{
+        console.log(data.meals[0]);
+        let arr = [];
+        for(let i=1; i<20; i++){
+            if(data.meals[0][`strIngredient${i}`]){
+            arr.push(`${data.meals[0][`strIngredient${i}`]} : ${data.meals[0][`strMeasure${i}`]}`)
+            }
+         }
+         console.log(arr);
+         ingredient__list.innerHTML += `<h3>${data.meals[0].strMeal}</h3>`
+         arr.forEach(e=>{
+             const ingredient = `<p class="ingredient">${e}</p>`
+             ingredient__list.innerHTML += ingredient;
+         })
     })
-
     }
     else{console.log('false')}
-    // const mealId = e.path.find(element=>{
-    //  if(element.classList.contains('fa-list-ul')){
-    //      return element.getAttribute('class')
-    //     //  return element.path
-    //  }
-    //  else{false}   
-    // })
-    // console.log(mealId);
 })
+    
+    
+    
+

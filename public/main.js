@@ -108,6 +108,12 @@ resoult__wraper.addEventListener('click', e=>{
              const ingredient = `<p class="ingredient">${e}</p>`
              ingredient__list.innerHTML += ingredient;
          })
+         ingredient__list.innerHTML += '<i class="fas fa-chevron-up fa-2x" id="arrow__up"></i>';
+         const arrow__up = document.getElementById('arrow__up');
+         arrow__up.addEventListener('click', e=>{
+             e.target.parentElement.innerHTML = '';
+         })
+
     })
     }
     else{console.log('false')}

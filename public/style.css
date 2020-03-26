@@ -46,8 +46,14 @@ html{
 .ingredient__list{
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
+    background-color: grey;
+    width: 75%;
+    border-radius: 5px;
+}
+.ingredient__list i{
+    padding: 10px;
 }
 .input__wraper{
     display: flex;
@@ -97,14 +103,21 @@ html{
 .resoult__wraper{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-wrap: wrap;
+    width: 100vW;
     /* flex-direction: column; */
 }
 .thumbnail{
     border-radius: 20px;
     width: 300px;
     height: 300px;
+}
+.wraper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 @media(max-width:650px){
 

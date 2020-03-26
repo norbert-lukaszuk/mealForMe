@@ -17,12 +17,16 @@ form.addEventListener('submit',e=>{
         
         data.meals.forEach(e=>{
             const recipe = e;
-            const meal = `<div class="meal"data-id=${recipe.idMeal}><p>${recipe.strMeal}</p><a class="link" href="${recipe.strSource}"><img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/><a></div>`;    
-            console.log(e)
-            // const paragraph = `<p>${e.strMeal}</p>`;
+            const meal = `<div class="meal" data-id=${recipe.idMeal}>
+            <p>${recipe.strMeal}</p>
+                <div class="meal__info">
+                    <div class="meal__icons"><a class="link" href="${recipe.strSource}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
+                    </div>
+                    <img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/>
+            </div>`;
+            // const meal = `<div class="meal"data-id=${recipe.idMeal}><p>${recipe.strMeal}</p><a class="link" href="${recipe.strSource}"><img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/><a></div>`;    
+           
             resoult__wraper.innerHTML += meal;
-            // resoult__wraper.innerHTML += `<img class="thumbnail" src="${e.strMealThumb}" alt="${e.strMeal}" />`;
-            // resoult__wraper.innerHTML += `<a class="link" href="${e.strSource}">Link<a>`;
         })
     })
     .catch(err=>console.log(err));
@@ -36,10 +40,14 @@ form.addEventListener('submit',e=>{
         data.results.forEach(e=>{
             console.log(e)
             const recipe = e;
-            const meal = `<div class="meal" data-id=${recipe.id}><p>${recipe.title}</p><a class="link" href="${recipe.sourceUrl}"><img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/><a></div>`;
+            const meal = `<div class="meal" data-id=${recipe.id}>
+            <p>${recipe.title}</p>
+                <div class="meal__info">
+                    <div class="meal__icons"><a class="link" href="${recipe.sourceUrl}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
+                    </div>
+                <img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/>
+            </div>`;
             resoult__wraper.innerHTML += meal;
-            // resoult__wraper.innerHTML += `<img class="thumbnail" src="https://spoonacular.com/recipeImages/${e.id}-480x360.jpg" alt="${e.title}" />`;
-            // resoult__wraper.innerHTML += `<a class="link" href="${e.sourceUrl}">Link<a>`;
            
         })
     });
@@ -53,10 +61,14 @@ random__button.addEventListener('click', e=>{
         
         // data.meals.forEach(e=>{
             const recipe = data.meals[0];
-            const meal = `<div class="meal"><p>${recipe.strMeal}</p><a class="link" href="${recipe.strSource}"><img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/><a></div>`;
+            const meal = `<div class="meal" data-id=${recipe.idMeal}>
+            <p>${recipe.strMeal}</p>
+                <div class="meal__info">
+                    <div class="meal__icons"><a class="link" href="${recipe.strSource}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
+                    </div>
+                    <img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/>
+            </div>`;
             resoult__wraper.innerHTML += meal;
-            // resoult__wraper.innerHTML += `<img class="thumbnail" src="${data.meals[0].strMealThumb}" alt="${data.meals[0].strMeal}" />`;
-            // resoult__wraper.innerHTML += `<a class="link" href="${data.meals[0].strSource}">Link<a>`;
 
         })
     fetch(`https://api.spoonacular.com/recipes/random?number=1&apiKey=${apiKey}`)
@@ -65,22 +77,34 @@ random__button.addEventListener('click', e=>{
             const recipe = data.recipes[0];
 						const meal = `<div class="meal" data-id=${recipe.id}>
 						<p>${recipe.title}</p>
-						
-						<div class="meal__info"><div class="meal__icons"><a class="link" href="${recipe.sourceUrl}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div></div>
-						<img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/>
-						
-						</div>`;
+                            <div class="meal__info">
+                                <div class="meal__icons"><a class="link" href="${recipe.sourceUrl}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
+                                </div>
+                            <img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/>
+                        </div>`;
             resoult__wraper.innerHTML += meal;
             
         });
     });
     // selcting single meal from resoults
 resoult__wraper.addEventListener('click', e=>{
-    const mealId = e.path.find(element=>{
-     if(element.classList.contains('fa-list-ul')){
-         return element.getAttribute('class')
-     }
-     else{false}   
-    })
+    if(e.target.classList.contains('fa-list-ul')){
+    const mealId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
     console.log(mealId);
+    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+    .then(res=>res.json())
+    .then(data=>{data.meals[0].strMeal
+    // meal ingridients array
+    })
+
+    }
+    else{console.log('false')}
+    // const mealId = e.path.find(element=>{
+    //  if(element.classList.contains('fa-list-ul')){
+    //      return element.getAttribute('class')
+    //     //  return element.path
+    //  }
+    //  else{false}   
+    // })
+    // console.log(mealId);
 })

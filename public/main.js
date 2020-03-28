@@ -93,6 +93,7 @@ resoult__wraper.addEventListener('click', e=>{
     const mealId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
     const mealApi = e.target.parentElement.parentElement.parentElement.getAttribute('api-id');
     console.log(mealId, mealApi);
+    if(mealApi==='mealDB'){
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
     .then(res=>res.json())
     .then(data=>{
@@ -122,7 +123,21 @@ resoult__wraper.addEventListener('click', e=>{
          })
 
     })
-    }
+}
+if(mealApi==='spoon'){
+    fetch(`https://api.spoonacular.com/recipes/${mealId}/information?apiKey=${apiKey}`)
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data.title);
+        ingredient__list.innerHTML = '';
+        ingredient__list.className = 'ingredient__list--hide';
+        ingredient__list.innerHTML += '<i class="far fa-times-circle fa-2x" id="close"></i>';
+        ingredient__list.innerHTML += `<h3>${data.title}</h3>`;
+        ingredient__list.className = 'ingredient__list';
+    })
+}
+
+}
     else{console.log('false')}
 })
     

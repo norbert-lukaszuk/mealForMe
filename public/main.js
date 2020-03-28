@@ -128,12 +128,29 @@ if(mealApi==='spoon'){
     fetch(`https://api.spoonacular.com/recipes/${mealId}/information?apiKey=${apiKey}`)
     .then(res=>res.json())
     .then(data=>{
-        console.log(data.title);
+        console.log(data);
+        const ingredients = data.extendedIngredients;
+        console.log('my console log: ingredients', ingredients)
+        
         ingredient__list.innerHTML = '';
         ingredient__list.className = 'ingredient__list--hide';
         ingredient__list.innerHTML += '<i class="far fa-times-circle fa-2x" id="close"></i>';
         ingredient__list.innerHTML += `<h3>${data.title}</h3>`;
         ingredient__list.className = 'ingredient__list';
+        ingredients.forEach(e=>{
+            const ingredient = document.createElement('p');
+            ingredient.className = 'ingredient';
+            ingredient.innerText = `${e.name} - ${e.amount} ${e.unit}`;
+            ingredient__list.appendChild(ingredient);
+
+        })
+        
+        const close = document.getElementById('close');
+             close.addEventListener('click', e=>{
+                 e.target.parentElement.innerHTML = '';
+                 ingredient__list.className = 'ingredient__list--hide';
+    
+             })
     })
 }
 

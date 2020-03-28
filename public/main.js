@@ -135,6 +135,7 @@ if(mealApi==='spoon'){
         ingredient__list.innerHTML = '';
         ingredient__list.className = 'ingredient__list--hide';
         ingredient__list.innerHTML += '<i class="far fa-times-circle fa-2x" id="close"></i>';
+        ingredient__list.innerHTML += `<img class="thumbnail" src="${data.image}" alt="${data.title}">`
         ingredient__list.innerHTML += `<h3>${data.title}</h3>`;
         ingredient__list.className = 'ingredient__list';
         ingredients.forEach(e=>{

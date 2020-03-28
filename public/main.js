@@ -115,6 +115,7 @@ resoult__wraper.addEventListener('click', e=>{
              ingredient__list.innerHTML += ingredient;
              ingredient__list.className = 'ingredient__list'
          })
+         window.scroll(0,200);
          const close = document.getElementById('close');
          close.addEventListener('click', e=>{
              e.target.parentElement.innerHTML = '';
@@ -145,7 +146,7 @@ if(mealApi==='spoon'){
             ingredient__list.appendChild(ingredient);
 
         })
-        
+        window.scroll(0,200);
         const close = document.getElementById('close');
              close.addEventListener('click', e=>{
                  e.target.parentElement.innerHTML = '';
@@ -158,7 +159,3 @@ if(mealApi==='spoon'){
 }
     else{console.log('false')}
 })
-    
-    
-    
-

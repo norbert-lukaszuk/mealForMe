@@ -18,7 +18,7 @@ form.addEventListener('submit',e=>{
         
         data.meals.forEach(e=>{
             const recipe = e;
-            const meal = `<div class="meal" data-id=${recipe.idMeal}>
+            const meal = `<div class="meal" data-id=${recipe.idMeal} api-id="mealDB">
             <p>${recipe.strMeal}</p>
                 <div class="meal__info">
                     <div class="meal__icons"><a class="link" href="${recipe.strSource}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
@@ -41,7 +41,7 @@ form.addEventListener('submit',e=>{
         data.results.forEach(e=>{
             console.log(e)
             const recipe = e;
-            const meal = `<div class="meal" data-id=${recipe.id}>
+            const meal = `<div class="meal" data-id=${recipe.id} api-id="spoon">
             <p>${recipe.title}</p>
                 <div class="meal__info">
                     <div class="meal__icons"><a class="link" href="${recipe.sourceUrl}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
@@ -62,7 +62,7 @@ random__button.addEventListener('click', e=>{
         
         // data.meals.forEach(e=>{
             const recipe = data.meals[0];
-            const meal = `<div class="meal" data-id=${recipe.idMeal}>
+            const meal = `<div class="meal" data-id=${recipe.idMeal} api-id="mealDB">
             <p>${recipe.strMeal}</p>
                 <div class="meal__info">
                     <div class="meal__icons"><a class="link" href="${recipe.strSource}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
@@ -76,7 +76,7 @@ random__button.addEventListener('click', e=>{
         .then(res=>res.json())
         .then(data=>{
             const recipe = data.recipes[0];
-						const meal = `<div class="meal" data-id=${recipe.id}>
+						const meal = `<div class="meal" data-id=${recipe.id} api-id="spoon">
 						<p>${recipe.title}</p>
                             <div class="meal__info">
                                 <div class="meal__icons"><a class="link" href="${recipe.sourceUrl}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
@@ -91,7 +91,8 @@ random__button.addEventListener('click', e=>{
 resoult__wraper.addEventListener('click', e=>{
     if(e.target.classList.contains('fa-list-ul')){
     const mealId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
-    console.log(mealId);
+    const mealApi = e.target.parentElement.parentElement.parentElement.getAttribute('api-id');
+    console.log(mealId, mealApi);
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
     .then(res=>res.json())
     .then(data=>{
@@ -103,8 +104,11 @@ resoult__wraper.addEventListener('click', e=>{
             }
          }
          console.log(arr);
+         ingredient__list.innerHTML = '';
+         ingredient__list.className = 'ingredient__list--hide';
          ingredient__list.innerHTML +='<i class="far fa-times-circle fa-2x" id="close"></i>';
-         ingredient__list.innerHTML += `<h3>${data.meals[0].strMeal}</h3>`
+         ingredient__list.innerHTML +=`<img class="thumbnail" src="${data.meals[0].strMealThumb}" alt="${data.meals[0].strMeal}"/>`;
+         ingredient__list.innerHTML += `<h3>${data.meals[0].strMeal}</h3>`;
          arr.forEach(e=>{
              const ingredient = `<p class="ingredient">${e}</p>`
              ingredient__list.innerHTML += ingredient;

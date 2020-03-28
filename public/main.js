@@ -103,15 +103,18 @@ resoult__wraper.addEventListener('click', e=>{
             }
          }
          console.log(arr);
+         ingredient__list.innerHTML +='<i class="far fa-times-circle fa-2x" id="close"></i>';
          ingredient__list.innerHTML += `<h3>${data.meals[0].strMeal}</h3>`
          arr.forEach(e=>{
              const ingredient = `<p class="ingredient">${e}</p>`
              ingredient__list.innerHTML += ingredient;
+             ingredient__list.className = 'ingredient__list'
          })
-         ingredient__list.innerHTML += '<i class="fas fa-chevron-up fa-2x" id="arrow__up"></i>';
-         const arrow__up = document.getElementById('arrow__up');
-         arrow__up.addEventListener('click', e=>{
+         const close = document.getElementById('close');
+         close.addEventListener('click', e=>{
              e.target.parentElement.innerHTML = '';
+             ingredient__list.className = 'ingredient__list--hide';
+
          })
 
     })

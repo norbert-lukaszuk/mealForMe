@@ -20,9 +20,9 @@ form.addEventListener('submit',e=>{
             const recipe = e;
             const meal = `<div class="meal" data-id=${recipe.idMeal} api-id="mealDB">
             <p>${recipe.strMeal}</p>
-                <div class="meal__info">
+                
                     <div class="meal__icons"><a class="link" href="${recipe.strSource}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
-                    </div>
+                    
                     <img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/>
             </div>`;
             // const meal = `<div class="meal"data-id=${recipe.idMeal}><p>${recipe.strMeal}</p><a class="link" href="${recipe.strSource}"><img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/><a></div>`;    
@@ -43,9 +43,9 @@ form.addEventListener('submit',e=>{
             const recipe = e;
             const meal = `<div class="meal" data-id=${recipe.id} api-id="spoon">
             <p>${recipe.title}</p>
-                <div class="meal__info">
+                
                     <div class="meal__icons"><a class="link" href="${recipe.sourceUrl}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
-                    </div>
+                    
                 <img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/>
             </div>`;
             resoult__wraper.innerHTML += meal;
@@ -64,9 +64,9 @@ random__button.addEventListener('click', e=>{
             const recipe = data.meals[0];
             const meal = `<div class="meal" data-id=${recipe.idMeal} api-id="mealDB">
             <p>${recipe.strMeal}</p>
-                <div class="meal__info">
+                
                     <div class="meal__icons"><a class="link" href="${recipe.strSource}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
-                    </div>
+                    
                     <img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/>
             </div>`;
             resoult__wraper.innerHTML += meal;
@@ -78,9 +78,9 @@ random__button.addEventListener('click', e=>{
             const recipe = data.recipes[0];
 						const meal = `<div class="meal" data-id=${recipe.id} api-id="spoon">
 						<p>${recipe.title}</p>
-                            <div class="meal__info">
-                                <div class="meal__icons"><a class="link" href="${recipe.sourceUrl}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
-                                </div>
+                        
+                        <div class="meal__icons"><a class="link" href="${recipe.sourceUrl}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
+                       
                             <img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/>
                         </div>`;
             resoult__wraper.innerHTML += meal;
@@ -90,8 +90,9 @@ random__button.addEventListener('click', e=>{
     // selcting single meal from resoults
 resoult__wraper.addEventListener('click', e=>{
     if(e.target.classList.contains('fa-list-ul')){
-    const mealId = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
-    const mealApi = e.target.parentElement.parentElement.parentElement.getAttribute('api-id');
+        console.log(e.target.parentElement.parentElement);
+    const mealId = e.target.parentElement.parentElement.getAttribute('data-id');
+    const mealApi = e.target.parentElement.parentElement.getAttribute('api-id');
     console.log(mealId, mealApi);
     if(mealApi==='mealDB'){
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)

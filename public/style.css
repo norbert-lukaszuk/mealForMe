@@ -67,11 +67,11 @@ html{
 }
 .link{
     text-decoration: none;
-    color: white;
+    color: rgb(7, 7, 7);
     
 }
 .link:visited{
-    color: white;
+    color: rgb(7, 7, 7);
 }
 .meal{
     position: relative;
@@ -80,15 +80,24 @@ html{
     justify-content: center;
     flex-direction: column;
 }
-.meal:hover .meal__info{
-    opacity: 60%;
+
+.meal:hover img{ /*make background out of the img*/
+    opacity: 30%;
+}
+.meal:hover .meal__icons{ /*show icons & put them on top*/
+   visibility: visible;
+   z-index: 1;
+     
 }
 .meal__icons{
     width: 100%;
+    position: absolute;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    color: white;
+    color: rgb(7, 7, 7);
+    visibility: hidden;
+    
 }
 .meal__info{
     position: absolute;

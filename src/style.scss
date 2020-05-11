@@ -17,6 +17,7 @@ html{
     align-items: center;
     justify-content: center;
     padding: 10px 0;
+   
 }
 .form{
     display: flex;
@@ -31,7 +32,10 @@ html{
 }
 .form button{
     margin-right: 10px;
-    padding: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 5px 5px 5px gray;
 }
 .form__wraper{
     display: flex;
@@ -42,6 +46,7 @@ html{
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
 .icons__wraper i{
     margin: 10px;

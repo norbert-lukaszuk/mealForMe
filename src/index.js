@@ -49,16 +49,18 @@ random__button.addEventListener('click', e=>{
 
         const recipe = data.meals[0];
         const meal = mealDb_search(recipe.idMeal, recipe.strMeal, recipe.strSource, recipe.strMealThumb);
+        // localStorage.setItem(recipe.idMeal, JSON.stringify(meal));
         resoult__wraper.innerHTML += meal;
-
-        })
+        
+    })
     fetch(`https://api.spoonacular.com/recipes/random?number=1&apiKey=${apiKey}`)
-        .then(res=>res.json())
-        .then(data=>{
-            const recipe = data.recipes[0];
-            const meal = mealSpoonSearch(recipe.id, recipe.title, recipe.sourceUrl);
-            resoult__wraper.innerHTML += meal;
-            
+    .then(res=>res.json())
+    .then(data=>{
+        const recipe = data.recipes[0];
+        const meal = mealSpoonSearch(recipe.id, recipe.title, recipe.sourceUrl);
+        // localStorage.setItem(recipe.id, JSON.stringify(meal));
+        resoult__wraper.innerHTML += meal;
+        
         });
     });
     // selcting single meal from resoults

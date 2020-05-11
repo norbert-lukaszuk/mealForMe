@@ -5,6 +5,7 @@ const ingredient__list = document.getElementById('ingredient__list');
 const resoult__wraper = document.getElementById('resoult__wraper');
 const random__button = document.getElementById('random__button');
 import './style.scss';
+import {mealDb_search, mealSpoonSearch} from './assets/meals';
 form.addEventListener('submit',e=>{
     e.preventDefault();
     const search = form.meal__search.value;
@@ -18,15 +19,7 @@ form.addEventListener('submit',e=>{
         
         data.meals.forEach(e=>{
             const recipe = e;
-            const meal = `<div class="meal" data-id=${recipe.idMeal} api-id="mealDB">
-            <p>${recipe.strMeal}</p>
-                
-                    <div class="meal__icons"><a class="link" href="${recipe.strSource}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
-                    
-                    <img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/>
-            </div>`;
-            // const meal = `<div class="meal"data-id=${recipe.idMeal}><p>${recipe.strMeal}</p><a class="link" href="${recipe.strSource}"><img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/><a></div>`;    
-           
+            const meal = mealDb_search(recipe.idMeal, recipe.strMeal, recipe.strSource, recipe.strMealThumb);
             resoult__wraper.innerHTML += meal;
         })
     })
@@ -41,13 +34,7 @@ form.addEventListener('submit',e=>{
         data.results.forEach(e=>{
             console.log(e)
             const recipe = e;
-            const meal = `<div class="meal" data-id=${recipe.id} api-id="spoon">
-            <p>${recipe.title}</p>
-                
-                    <div class="meal__icons"><a class="link" href="${recipe.sourceUrl}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
-                    
-                <img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/>
-            </div>`;
+            const meal = mealSpoonSearch(recipe.id, recipe.title, recipe.sourceUrl);
             resoult__wraper.innerHTML += meal;
            
         })
@@ -59,30 +46,17 @@ random__button.addEventListener('click', e=>{
     fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
     .then(res=>res.json())
     .then(data=>{
-        
-        // data.meals.forEach(e=>{
-            const recipe = data.meals[0];
-            const meal = `<div class="meal" data-id=${recipe.idMeal} api-id="mealDB">
-            <p>${recipe.strMeal}</p>
-                
-                    <div class="meal__icons"><a class="link" href="${recipe.strSource}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
-                    
-                    <img class="thumbnail" src="${recipe.strMealThumb}" alt="${recipe.strMeal}"/>
-            </div>`;
-            resoult__wraper.innerHTML += meal;
+
+        const recipe = data.meals[0];
+        const meal = mealDb_search(recipe.idMeal, recipe.strMeal, recipe.strSource, recipe.strMealThumb);
+        resoult__wraper.innerHTML += meal;
 
         })
     fetch(`https://api.spoonacular.com/recipes/random?number=1&apiKey=${apiKey}`)
         .then(res=>res.json())
         .then(data=>{
             const recipe = data.recipes[0];
-						const meal = `<div class="meal" data-id=${recipe.id} api-id="spoon">
-						<p>${recipe.title}</p>
-                        
-                        <div class="meal__icons"><a class="link" href="${recipe.sourceUrl}"><i class="fas fa-external-link-alt fa-2x"></i></a><i class="fas fa-list-ul fa-2x"></i><i class="far fa-save fa-2x"></i></div>
-                       
-                            <img class="thumbnail" src="https://spoonacular.com/recipeImages/${recipe.id}-480x360.jpg" alt="${recipe.title}"/>
-                        </div>`;
+            const meal = mealSpoonSearch(recipe.id, recipe.title, recipe.sourceUrl);
             resoult__wraper.innerHTML += meal;
             
         });

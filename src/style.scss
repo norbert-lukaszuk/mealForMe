@@ -80,7 +80,7 @@ html{
         top: 4px;
         color: $inpt_label;
         font-size: 1.125em;
-        transition: 1s;
+        transition: all .7s ease;
     }
     & input {
         width: 210px;
@@ -128,6 +128,9 @@ html{
     align-items: center;
     color: rgb(7, 7, 7);
     visibility: hidden;
+    & i {
+        cursor: pointer;
+    }
     
 }
 .meal__info{

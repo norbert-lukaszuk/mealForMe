@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+html{
+    font-family: 'Oswald', sans-serif;
+}
+.app__name{
+    text-align: center;
+    margin: 15px 0;
+}
+.buttons__wraper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+}
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.form input{
+    margin-right: 10px;
+    padding: 5px;
+}
+.form button{
+    margin-right: 10px;
+    padding: 5px;
+}
+.form__wraper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icons__wraper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icons__wraper i{
+    margin: 10px;
+}
+.ingredient{
+    margin: 0;
+    padding: .5rem;
+}
+.ingredient__list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 20px;
+    background-color: grey;
+    color: rgba(255, 255, 255, 0.274);
+    width: 100vw;
+    height: 100%;
+    border-radius: 5px;
+}
+.ingredient__list--hide{
+    display: none;
+}
+.ingredient__list i{
+    padding: 10px 20px;
+    align-self: flex-start;
+}
+.input__wraper{
+    display: flex;
+}
+.link{
+    text-decoration: none;
+    color: rgb(7, 7, 7);
+    
+}
+.link:visited{
+    color: rgb(7, 7, 7);
+}
+.meal{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.meal:hover img{ /*make background out of the img*/
+    opacity: 30%;
+}
+.meal:hover .meal__icons{ /*show icons & put them on top*/
+   visibility: visible;
+   z-index: 1;
+     
+}
+.meal__icons{
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: rgb(7, 7, 7);
+    visibility: hidden;
+    
+}
+.meal__info{
+    position: absolute;
+    background-color: black;
+    border-radius: 20px;
+    top: 15%;
+    left: 0;
+    width: 100%;
+    height: 84%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    /* visibility: hidden; */
+}
+.meal__title{
+    color: white;
+}
+.resoult__wraper{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100vW;
+    /* flex-direction: column; */
+}
+.thumbnail{
+    border-radius: 20px;
+    width: 300px;
+    height: 300px;
+}
+.wraper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+@media(max-width:650px){
+
+.resoult__wraper{
+    flex-direction: column;
+}
+}

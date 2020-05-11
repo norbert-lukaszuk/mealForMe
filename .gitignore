@@ -1,4 +1,6 @@
 gitc.sh
+node_modules
+dist
 dom.html
 dom.js
 dom.css
